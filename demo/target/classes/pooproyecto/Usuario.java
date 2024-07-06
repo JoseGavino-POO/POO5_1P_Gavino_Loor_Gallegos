@@ -1,4 +1,4 @@
-public class Usuario {
+public abstract class Usuario {
     protected String nombre;
     protected String apellido;
     protected String correoElectronico;
@@ -7,5 +7,5 @@ public class Usuario {
     this.apellido = apellido;
     this.correoElectronico = correo;
 }
-
+public abstract String crearCorreo();
 }
