@@ -2,11 +2,13 @@ public class Autor extends Usuario{
   private String institucion;
   private String campoInvestigacion;
   private String correo;
-  public Autor(String institucion,String campoInvestigacion,String correo,String nombre,String apellido){
+  private int codigo;
+  public Autor(String institucion,String campoInvestigacion,String correo,String nombre,String apellido,int codigo){
     super(nombre,apellido);
     this.institucion = institucion;
     this.campoInvestigacion = campoInvestigacion;
     this.correo = correo;
+    this.codigo = codigo;
   }
   public String getInstitucion(){
     return institucion;
@@ -25,5 +27,11 @@ public class Autor extends Usuario{
   }
   public void setCorreo(String correo){
     this.correo = correo;
+  }
+  public int getCodigo(){
+    return codigo;
+  }
+  public void setCodigo(int codigo){
+    this.codigo = codigo;
   }
 }
