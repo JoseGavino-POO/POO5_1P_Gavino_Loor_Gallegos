@@ -1,15 +1,17 @@
 public class Autor extends Usuario{
-  private String institucion;
-  private String campoInvestigacion;
-  private String correo;
-  private int codigo;
-  public Autor(String institucion,String campoInvestigacion,String correo,String nombre,String apellido,int codigo){
-    super(nombre,apellido);
-    this.institucion = institucion;
-    this.campoInvestigacion = campoInvestigacion;
-    this.correo = correo;
-    this.codigo = codigo;
-  }
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String institucion;
+    private String campoDeInvestigacion;
+public Autor(String usuario, String contra, String rol, String nombre, String apellido, String correo, String institucion, String campoDeInvestigacion) {
+        super(usuario, contra, rol);
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.institucion = institucion;
+        this.campoDeInvestigacion = campoDeInvestigacion;
+}
   public String getInstitucion(){
     return institucion;
   }
@@ -17,10 +19,10 @@ public class Autor extends Usuario{
     this.institucion = institucion;    
   }
   public String getCampo(){
-    return campoInvestigacion;
+    return campoDeInvestigacion;
   }
   public void setCampo(String campo){
-    this.campoInvestigacion = campo;    
+    this.campoDeInvestigacion = campo;    
   }
   public String getCorreo(){
     return correo;
@@ -28,10 +30,16 @@ public class Autor extends Usuario{
   public void setCorreo(String correo){
     this.correo = correo;
   }
-  public int getCodigo(){
-    return codigo;
+  public String getNombre(){
+    return nombre;
   }
-  public void setCodigo(int codigo){
-    this.codigo = codigo;
+  public void setNombre(String nombre){
+    this.nombre = nombre;
+  }
+  public String getApellido(){
+    return apellido;
+  }
+  public void setApellido(String apellido){
+    this.apellido = apellido;
   }
 }
