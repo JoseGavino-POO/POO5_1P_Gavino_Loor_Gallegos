@@ -1,4 +1,3 @@
-
 public class Editor extends Usuario{
     private String nombreJournal;
     
@@ -13,11 +12,12 @@ public class Editor extends Usuario{
     public void setNombreJournal(String nombreJournal){
     this.nombreJournal = nombreJournal;
     }
+    @Override
     public String generarCorreo(){
             String correo = "Correo editor";
             return correo;
     }
-    
+    @Override
     public void decidirSobreArticulo(){
         System.out.println("decision revisor");
     }
