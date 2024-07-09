@@ -1,4 +1,4 @@
-public class Editor extends Usuario{
+public class Editor extends Usuario {
     private String nombreJournal;
     
     public Editor (String user, String contrasenia, String nombre, String apellido, String email, String nombreJournal){
