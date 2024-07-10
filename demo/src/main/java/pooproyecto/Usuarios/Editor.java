@@ -1,3 +1,5 @@
+package pooproyecto.Usuarios;
+
 public class Editor extends Usuario {
     private String nombreJournal;
     

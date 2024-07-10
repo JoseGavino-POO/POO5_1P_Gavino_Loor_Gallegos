@@ -1,3 +1,5 @@
+package pooproyecto.Usuarios;
+
 public class Autor {
     private int codigoIdentificacion;
     private String nombre;

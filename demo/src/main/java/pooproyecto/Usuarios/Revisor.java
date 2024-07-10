@@ -1,3 +1,5 @@
+package pooproyecto.Usuarios;
+
 public class Revisor extends Usuario {
     private String especialidad;
     private int numeroArticulosRevisados;
