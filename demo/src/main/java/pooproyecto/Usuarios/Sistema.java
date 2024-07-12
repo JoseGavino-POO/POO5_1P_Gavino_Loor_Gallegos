@@ -4,33 +4,35 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Sistema {
     private static List<Usuario> usuarios = new ArrayList<>();
-    public static void imprimirFormato() {
+    public static int inicio() {
+        Scanner sc = new Scanner(System.in);
         // Línea superior
-        imprimirLinea("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
+        primerLinea("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         // Título centrado
-        imprimirTituloCentrado("BIENVENIDO A LA APLICACION ");
-
+        titulo("BIENVENIDO A LA APLICACION ");
         // Línea intermedia
-        imprimirLinea("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
+        primerLinea("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         // Opciones del menú
-        imprimirMenu();
-
+        menu();
         // Línea inferior
-        imprimirLinea("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        primerLinea("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        System.out.print("Escoga una opcion(1/2): ");
+        int opcion = sc.nextInt();
+        return opcion;
+
     }
 
-    public static void imprimirLinea(String linea) {
+    public static void primerLinea(String linea) {
         System.out.println("+" + linea + "+");
     }
 
-    public static void imprimirTituloCentrado(String titulo) {
+    public static void titulo(String titulo) {
         int longitudTitulo = titulo.length();
         int espacios = (60 - longitudTitulo) / 2;
         String espaciosAntes = " ".repeat(espacios);
@@ -38,15 +40,15 @@ public class Sistema {
         System.out.println("|" + espaciosAntes + titulo + espaciosDespues + "|");
     }
 
-    public static void imprimirMenu() {
+    public static void menu() {
         System.out.println("| Que quiere hacer hoy?                                   |");
-        System.out.println("|  1. Someter articulo                                    |");
-        System.out.println("|  2. Iniciar sesion                                      |");
+        System.out.println("|  1. Iniciar sesion                                      |");
+        System.out.println("|  2. Someter Articulo                                    |");
     }
 
 
      // Método para inicializar los datos desde archivos
-  public static void inicializarDatos() {
+  public static void leertxt() {
         try {
             // Leer datos de usuarios
             if (Files.exists(Paths.get("usuarios.txt"))) {
@@ -79,12 +81,17 @@ public class Sistema {
     }
 
     //Generar codigo id de autor
-    // public int generarCodigoID(){
-    //     Random random = new Random();
-    //     int id = 
+    public static int generarCodigoID(){
+        Random random = new Random();
+        int id = random.nextInt((1000000));
+        return id;
+    }
 
 
 
-    // }
+
+    
+
+}
 
 }
