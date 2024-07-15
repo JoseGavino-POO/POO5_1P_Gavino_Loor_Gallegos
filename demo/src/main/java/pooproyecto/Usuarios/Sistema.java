@@ -88,12 +88,85 @@ public class Sistema {
     }
 
 
-    //Generar codigo id de autor
-    public static int generarCodigoID(){
-        Random random = new Random();
-        int id = random.nextInt((1000000));
-        return id;
+   //Generar codigo id de autor
+    public static String generarCodigo(){
+        return UUID.randomUUID().toString();   
     }
+
+
+
+    
+    
+    public static void iniciarSesionUsuario(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese su usuario: ");
+        String usuario = sc.nextLine();
+        System.out.println("Ingrese su contraseña: ");
+        String contraseña = sc.nextLine();
+        boolean cor = false;
+        for (Usuario usuarios : listUsuarios){
+            if (usuarios.getUser().equals(usuario) && usuarios.getContrasenia().equals(contraseña)){    
+                System.out.println("Acceso exitoso");
+                cor = false;
+                break;
+            }
+            else {
+                cor = true;
+            }    
+        }
+        if (cor) {
+            System.out.println("Contraseña incorrecta");
+        }
+    }
+
+
+
+
+    public static void enviarCorreo(Revisor revisor, Articulo articulo){
+        String correo = revisor.getEmail();
+        System.out.println(correo+":\nSe le ha asignado un articulo para su revision");
+        articulo.toString();
+    }
+    public static void gestionRevision(Articulo articulo){
+        Random rd = new Random();
+        int indice1 = rd.nextInt(listRevisores.size());
+        int indice2;
+        do{
+            indice2 = rd.nextInt(listRevisores.size());
+        }
+        while(indice2 == indice1);
+        enviarCorreo(listRevisores.get(indice1), articulo);
+        enviarCorreo(listRevisores.get(indice2), articulo);
+    }
+    
+    public static Articulo registroDatosAutor(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("----Ingrese sus datos---- ");
+        String codigoIdentificacion = generarCodigo();
+        System.out.print("Ingrese su nombre: ");
+        String nombre = sc.nextLine();
+        System.out.print("Ingrese su apellido: ");
+        String apellido = sc.nextLine();
+        System.out.print("Ingrese su correo electronico: ");
+        String correo = sc.nextLine();
+        System.out.print("Ingrese su institucion: ");
+        String institucion = sc.nextLine();
+        System.out.print("Ingrese su campo de investigacion: ");
+        String campoInvestigacion = sc.nextLine();
+        Revision revision = new Revision(codigoIdentificacion, nombre, apellido, correo, institucion, campoInvestigacion);
+        Autor autor = new Autor(codigoIdentificacion, nombre, apellido, correo, institucion, campoInvestigacion);
+        Articulo articulo = autor.someterArticulo();
+        articulos.add(articulo);
+        if (!autores.contains(autor)){
+            autores.add(autor);
+        }
+        return articulo;
+    }
+    
+   
+    }
+
+
 
 
 
