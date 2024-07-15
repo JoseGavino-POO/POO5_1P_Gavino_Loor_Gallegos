@@ -6,9 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.UUID;
+
 
 public class Sistema {
-    private static List<Usuario> usuarios = new ArrayList<>();
+    static ArrayList<Usuario> listUsuarios = new ArrayList<>();
+    static ArrayList<Autor> autores = new ArrayList<>();
+    static ArrayList<Articulo> articulos = new ArrayList<>();
+    static ArrayList<Revisor> listRevisores = new ArrayList<>();
+    static ArrayList<Editor> listEditores = new ArrayList<>();
+    
     public static int inicio() {
         Scanner sc = new Scanner(System.in);
         // Línea superior
@@ -48,22 +55,22 @@ public class Sistema {
 
 
      // Método para inicializar los datos desde archivos
-  public static void leertxt() {
+    public static void leertxt(){
         try {
             // Leer datos de usuarios
-            if (Files.exists(Paths.get("usuarios.txt"))) {
-                List<String> usuariosLeer = Files.readAllLines(Paths.get("usuarios.txt"));
+            if (Files.exists(Paths.get("demo/src/main/java/pooproyecto/Usuarios/usuarios.txt"))) {
+                List<String> usuariosLeer = Files.readAllLines(Paths.get("demo/src/main/java/pooproyecto/Usuarios/usuarios.txt"));
                 for (String leer : usuariosLeer) {
                     String[] parts = leer.split(",");
-                    if (parts.length != 7) {  // Verifica que haya exactamente 7 partes
-                        System.out.println("Datos de usuario invalidos (número de partes incorrecto): " + leer);
-                        continue;  // Salta a la siguiente iteración del bucle
+                    if (parts.length != 7) { // Verifica que haya exactamente 7 partes
+                        System.out.println("Datos de usuario inválidos (número de partes incorrecto): " + leer);
+                        continue; // Salta a la siguiente iteración del bucle
                     }
                     String rol = parts[0];
                     if (rol.equals("E")) {
-                        usuarios.add(new Editor(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]));
+                        listUsuarios.add(new Editor(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]));
                     } else if (rol.equals("R")) {
-                        usuarios.add(new Revisor(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]));
+                        listUsuarios.add(new Revisor(parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]));
                     } else {
                         System.out.println("Rol de usuario desconocido: " + rol);
                     }
@@ -71,7 +78,7 @@ public class Sistema {
             } else {
                 System.out.println("Archivo usuarios.txt no existe.");
             }
-        } catch (IOException e) {
+         } catch (IOException e) {
             System.out.println("Error al leer archivo: " + e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Error de índice al procesar los datos del usuario: " + e.getMessage());
@@ -79,6 +86,7 @@ public class Sistema {
             System.out.println("Error inesperado: " + e.getMessage());
         }
     }
+
 
     //Generar codigo id de autor
     public static int generarCodigoID(){
